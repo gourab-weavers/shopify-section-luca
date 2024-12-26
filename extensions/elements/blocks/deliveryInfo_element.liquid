@@ -1,0 +1,24 @@
+{{ 'usp_elements.css' | asset_url| stylesheet_tag }}
+<div class="delivery-info {% if block.settings.enable_background_color %} in-stock{% endif %}" {% if block.settings.enable_background_color %}style="background:{{ block.settings.background_color }};"{% endif %}>
+    {% if block.settings.element_before_image != blank %}
+        <img src="{{ block.settings.element_before_image | image_url: width: 20, height: 20 }}" alt="delivery" />
+    {% endif %}
+    <p style="color:{{ block.settings.text_color }}; font-size:{{ block.settings.element_font_size }}px; font-weight:{{ block.settings.element_font_weight }};">{{ block.settings.element_text }}</p>
+</div>
+
+{% schema %}
+{
+  "name": "Delivery Element",
+  "target": "section",
+  "settings": [
+    { "type": "checkbox", "id": "enable_background_color", "label": "Enable Background Color", "default": false },   
+    { "type": "color", "id": "background_color", "label": "Background Color", "default": "#95DD97" },
+    { "type": "color", "id": "text_color", "label": "Text Color", "default": "#1B5922" },
+    { "type": "range", "id": "element_font_size", "min": 10, "max": 20, "step": 1, "unit": "px", "default": 14, "label": "Font Size"},
+    { "type": "range", "id": "element_font_weight", "min": 100, "max": 900, "step": 100, "default": 500, "label": "Font Weight"},
+    { "type": "text", "id": "element_text", "label": "Delivery Text", "default": "Lieferzeit: 2-4 Werktage" },
+    { "type": "image_picker", "id": "element_before_image", "label": "Before Image" }
+  ]
+}
+{% endschema %}
+
