@@ -1,0 +1,63 @@
+
+{% comment %}
+    {% render 'element1' , 
+        element_corner: section.settings.element_corner,
+        backcolor: section.settings.background_color,   
+        text_color: section.settings.text_color, 
+        font_size: block.settings.element_font_size,
+        font_weight: block.settings.element_font_weight,
+        element_text: section.settings.element_text,
+        element_text2: section.settings.element_text2, 
+        show_element_image: section.settings.show_element_image,
+        element_first_image: section.settings.element_first_image,
+        element_secound_image: section.settings.element_secound_image,
+        element_verified: section.settings.element_verified,
+        element_verified_image: section.settings.element_verified_image,
+        element_tick_position: section.settings.element_tick_position
+    %} 
+{% endcomment %}
+<div class="trustelement {{ element_corner }} {{ element_tick_position }}{%if element_verified %} check {% endif %}" style="background: {{backcolor}};">
+    {% if show_element_image %}
+        <div class="trustelement-img">
+        {% if element_first_image != blank or element_secound_image != blank and show_element_image and element_tick_position != 'without-user-image'%}
+            {% if element_first_image != blank %}
+                <img src="{{ element_first_image | img_url:"25*25" }}" alt="Trust Element Image" width="25" height="25"/>
+            {% endif %}
+            {% if element_secound_image != blank %}
+                <img src="{{ element_secound_image | img_url:"25*25" }}" alt="Trust Element Image" width="25" height="25"/>
+            {% endif %}
+            {%if element_verified and element_verified_image != blank %} 
+                {% if element_tick_position contains 'verify-check-top-right' %}
+                <img src="{{ element_verified_image | img_url:"14*14" }}" alt="Trust Element Image" width="14" height="14"/>
+                {% endif %}
+            {% endif %}
+        {% else %}                        
+            {% if show_element_image and element_tick_position != 'verify-check-without-image'%}
+                <img src="{{ 'trustelementimg1.jpg' | asset_url }}" alt="Trust Element Image" width="25" height="25"/>
+                <img src="{{ 'trustelementimg2.jpg' | asset_url }}" alt="Trust Element Image" width="25" height="25" />  
+            {% endif %}
+        {% endif %}  
+        </div>
+    {% else %}
+        {% unless show_element_image %}
+            {%if element_verified and element_verified_image != blank %} 
+                {% if element_tick_position contains 'verify-check-without-image' %}
+                    <div class="trustelement-img">
+                        <img src="{{ element_verified_image | img_url:"14*14" }}" alt="Trust Element Image" width="14" height="14"/>
+                    </div>
+                {% endif %}
+            {% endif %}
+        {% endunless %}
+    {% endif %} 
+    <div class="info">
+        <div style="color:{{text_color}};">
+            <p style="margin: 0; font-size:{{ font_size }}px; font-weight:{{ font_weight }}">
+            {{ element_text }} 
+            {% if element_tick_position contains 'verify-check-with-content' and element_verified and element_verified_image != blank%}
+                <img src="{{ element_verified_image | img_url:"14*14" }}" alt="Trust Element Image" width="14" height="14"/>
+            {% endif %}
+            {{ element_text2 }}
+            </p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+{{ 'trust_elements.css' | asset_url| stylesheet_tag }}
+{% render 'trustElement' , 
+  element_corner: block.settings.element_corner,
+  backcolor: block.settings.background_color,   
+  text_color: block.settings.text_color, 
+  font_size: block.settings.element_font_size,
+  font_weight: block.settings.element_font_weight,
+  element_text: block.settings.element_text, 
+  element_text2: block.settings.element_text2,
+  show_element_image: block.settings.show_element_image,
+  element_first_image: block.settings.element_first_image,
+  element_secound_image: block.settings.element_secound_image,
+  element_verified: block.settings.element_verified,
+  element_verified_image: block.settings.element_verified_image,
+  element_tick_position: block.settings.element_tick_position
+%} 
+
+{% schema %}
+{
+  "name": "Trust Element",
+  "target": "section",
+  "settings": [
+    { "type": "select", "id": "element_corner", "options": [{ "value": "trustelement-round", "label": "Round" },{ "value": "trustelement-square", "label": "Square" },{ "value": "trustelement-square trustelement-square-small", "label": "Small Square" }], "default": "trustelement-round", "label": "Element Box Type" },
+    { "type": "color", "id": "background_color", "label": "Background Color", "default": "#C6C6C6" },
+    { "type": "color", "id": "text_color", "label": "Text Color", "default": "#fff" },
+    { "type": "range", "id": "element_font_size", "min": 10, "max": 20, "step": 1, "unit": "px", "default": 14, "label": "Font Size"},
+    { "type": "range", "id": "element_font_weight", "min": 100, "max": 800, "step": 100, "default": 500 , "label": "Font Weight",},
+    { "type": "text", "id": "element_text", "label": "Element Text", "default": "+231 Personen gefällt das" },
+    { "type": "text", "id": "element_text2", "label": "Element Text"},    
+    { "type": "checkbox", "id": "show_element_image", "label": "Enable Image", "default": true },
+    { "type": "image_picker", "id": "element_first_image", "label": "Element Image" },
+    { "type": "image_picker", "id": "element_secound_image", "label": "Element Image" },
+    { "type": "checkbox", "id": "element_verified", "label": "Verified Tick", "default": true },
+    { "type": "image_picker", "id": "element_verified_image", "label": "Verified Image" },
+    { "type": "select", "id": "element_tick_position", "options": [{ "value": "verify-check-top-right", "label": "Verified tick top right" },{ "value": "verify-check-without-image", "label": "Without User Image" },{ "value": "verify-check-with-content", "label": "Verified tick content middle" }], "default": "verify-check-top-right", "label": "Element Verified Position" }
+  ]
+}
+{% endschema %}
+

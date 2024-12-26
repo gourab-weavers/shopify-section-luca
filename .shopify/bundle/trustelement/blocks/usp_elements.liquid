@@ -1,0 +1,67 @@
+{{ 'usp_elements.css' | asset_url| stylesheet_tag }}
+<div class="product-usp {{ block.settings.element_corner }}">
+  <ul>
+      {% if block.settings.element_text_1 != blank %}
+        <li {% if block.settings.background_color_1 != blank %} style="background: {{ block.settings.background_color_1 }}" {% endif %}>
+          {% if block.settings.element_before_image_1 != blank %}
+            <span>
+              <img src="{{ block.settings.element_before_image_1 | img_url:"master" }}" alt=""/> 
+            </span> 
+          {% endif %}
+          <span style="color:{{ block.settings.text_color_1 }}; font-size:{{ block.settings.element_font_size_1 }}px">{{ block.settings.element_text_1 }}</span>
+        </li>
+      {% endif %}
+      {% if block.settings.element_text_2 != blank %}
+        <li {% if block.settings.background_color_2 != blank %} style="background: {{ block.settings.background_color_2 }}" {% endif %}>
+          {% if block.settings.element_before_image_2 != blank %}
+            <span>
+              <img src="{{ block.settings.element_before_image_2 | img_url:"master" }}" alt=""/> 
+            </span> 
+          {% endif %}
+          <span style="color:{{ block.settings.text_color_2 }}; font-size:{{ block.settings.element_font_size_2 }}px">{{ block.settings.element_text_2 }}</span>
+        </li>
+      {% endif %}
+      {% if block.settings.element_text_3 != blank %}
+        <li {% if block.settings.background_color_3 != blank %} style="background: {{ block.settings.background_color_3 }}" {% endif %}>
+          {% if block.settings.element_before_image_3 != blank %}
+            <span>
+              <img src="{{ block.settings.element_before_image_3 | img_url:"master" }}" alt=""/> 
+            </span> 
+          {% endif %}
+          <span style="color:{{ block.settings.text_color_3 }}; font-size:{{ block.settings.element_font_size_3 }}px">{{ block.settings.element_text_3 }}</span>
+        </li>
+      {% endif %}
+      
+  </ul>
+</div>
+
+{% schema %}
+{
+  "name": "USP Element",
+  "target": "section",
+  "settings": [
+    { "type": "select", "id": "element_corner", "options": [{ "value": "product-usp-round", "label": "Round" },{ "value": "", "label": "Square" }], "default": "", "label": "Element Box Type" },
+    { "type": "header", "content": "USP 1"},    
+    { "type": "color", "id": "background_color_1", "label": "Background Color", "default": "#C6C6C6" },
+    { "type": "color", "id": "text_color_1", "label": "Text Color", "default": "#fff" },
+    { "type": "range", "id": "element_font_size_1", "min": 10, "max": 20, "step": 1, "unit": "px", "default": 14, "label": "Font Size"},
+    { "type": "text", "id": "element_text_1", "label": "USP Text", "default": "100% natürlich" },
+    { "type": "image_picker", "id": "element_before_image_1", "label": "USP Before Image" },
+
+    { "type": "header", "content": "USP 2"},
+    { "type": "color", "id": "background_color_2", "label": "Background Color", "default": "#C6C6C6" },
+    { "type": "color", "id": "text_color_2", "label": "Text Color", "default": "#fff" },
+    { "type": "range", "id": "element_font_size_2", "min": 10, "max": 20, "step": 1, "unit": "px", "default": 14, "label": "Font Size"},
+    { "type": "text", "id": "element_text_2", "label": "USP Text", "default": "Laborgeprüft" },
+    { "type": "image_picker", "id": "element_before_image_2", "label": "USP Before Image" },
+
+    { "type": "header", "content": "USP 3"},
+    { "type": "color", "id": "background_color_3", "label": "Background Color", "default": "#C6C6C6" },
+    { "type": "color", "id": "text_color_3", "label": "Text Color", "default": "#fff" },
+    { "type": "range", "id": "element_font_size_3", "min": 10, "max": 20, "step": 1, "unit": "px", "default": 14, "label": "Font Size"},
+    { "type": "text", "id": "element_text_3", "label": "USP Text", "default": "Vegan" },
+    { "type": "image_picker", "id": "element_before_image_3", "label": "USP Before Image" }
+  ]
+}
+{% endschema %}
+
