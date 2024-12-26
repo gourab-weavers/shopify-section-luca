@@ -1,0 +1,25 @@
+{{ 'usp_elements.css' | asset_url| stylesheet_tag }}
+{% if block.settings.element_badge_text != blank %}
+    <div class="product-info-badge {{ block.settings.element_box }} {% if block.settings.element_border_shadow > 0 %}badge-bottom-border {% endif %}" style="font-size: {{ block.settings.element_font_size }}px; font-weight: {{ block.settings.element_font_weight }}; color: {{ block.settings.element_text_color }}; border: {{ block.settings.element_border }}px solid {{ block.settings.element_border_color }}; border-bottom-width:{{ block.settings.element_border_shadow }}px; border-bottom-color:{{ block.settings.element_border_shadow_color }}; background: {{ block.settings.element_background_color }};">
+        {{ block.settings.element_badge_text }}        
+    </div>
+{% endif %}
+{% schema %}
+{
+  "name": "Badge Element",
+  "target": "section",
+  "settings": [
+    { "type": "select", "id": "element_box", "options": [{ "value": "badge-round", "label": "Badge Round" },{ "value": "badge-square", "label": "Badge Square" },{ "value": "badge-half-square", "label": "Badge Half Square" }], "default": "badge-square", "label": "Badge Shape" },
+    { "type": "inline_richtext", "id": "element_badge_text", "label": "Text", "default": "Badge" }, 
+    { "type": "color", "id": "element_background_color", "label": "Background Color", "default": "#000000" },    
+    { "type": "color", "id": "element_text_color", "label": "Text Color", "default": "#000000" },
+    { "type": "range", "id": "element_font_size", "min": 10, "max": 50, "step": 1, "unit": "px", "default": 14, "label": "Font Size"},
+    { "type": "range", "id": "element_font_weight", "min": 100, "max": 900, "step": 100, "default": 500, "label": "Font Weight"},
+    { "type": "range", "id": "element_border", "min": 0, "max": 5, "step": 1, "unit": "px", "default": 1, "label": "broder size"},
+    { "type": "color", "id": "element_border_color", "label": "Broder Color", "default": "#000000" },
+    { "type": "range", "id": "element_border_shadow", "min": 0, "max": 5, "step": 1, "unit": "px", "default": 0, "label": "broder size"},
+    { "type": "color", "id": "element_border_shadow_color", "label": "Broder shadow Color", "default": "#000000" }    
+  ]
+}
+{% endschema %}
+

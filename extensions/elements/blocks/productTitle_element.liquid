@@ -11,7 +11,7 @@
             {% endif %}
         </{{ block.settings.element_tag_1 }}>
     {% endif %}
-    {% if block.settings.element_text_1 != blank or block.settings.element_data_1 == 'title' or block.settings.element_data_1 == 'vendor' %}
+    {% if block.settings.element_text_2 != blank or block.settings.element_data_2 == 'title' or block.settings.element_data_2 == 'vendor' %}
         <{{ block.settings.element_tag_2 }} style="font-size:{{ block.settings.element_font_size_2 }}px; font-weight: {{ block.settings.element_font_weight_2 }}; color: {{ block.settings.text_color_2 }};">
             {% if block.settings.element_text_2 != blank %}
                 {{ block.settings.element_text_2 }}
@@ -22,7 +22,7 @@
             {% endif %}
         </{{ block.settings.element_tag_2 }}>
     {% endif %}
-    {% if block.settings.element_text_1 != blank or block.settings.element_data_1 == 'title' or block.settings.element_data_1 == 'vendor' %}
+    {% if block.settings.element_text_3 != blank or block.settings.element_data_3 == 'title' or block.settings.element_data_3 == 'vendor' %}
         <{{ block.settings.element_tag_3 }} style="font-size:{{ block.settings.element_font_size_3 }}px; font-weight: {{ block.settings.element_font_weight_3 }}; color: {{ block.settings.text_color_3 }};">
             {% if block.settings.element_text_3 != blank %}
                 {{ block.settings.element_text_3 }}
@@ -46,7 +46,7 @@
     { "type": "range", "id": "element_font_size_1", "min": 10, "max": 50, "step": 1, "unit": "px", "default": 14, "label": "Font Size"},
     { "type": "range", "id": "element_font_weight_1", "min": 100, "max": 900, "step": 100, "default": 500, "label": "Font Weight"},
     { "type": "select", "id": "element_data_1", "options": [{ "value": "title", "label": "Product Title" },{ "value": "vendor", "label": "Vendor" },{ "value": "text", "label": "Custom Text" }], "default": "text", "label": "Data Type" },
-    { "type": "text", "id": "element_text_1", "label": "Text", "default": "Title" },
+    { "type": "inline_richtext", "id": "element_text_1", "label": "Text", "default": "Title" },
 
     { "type": "header", "content": "Title 2"},
     { "type": "select", "id": "element_tag_2", "options": [{ "value": "h1", "label": "H1" },{ "value": "h2", "label": "H2" },{ "value": "h3", "label": "H3" },{ "value": "h4", "label": "H4" },{ "value": "p", "label": "Peragraph" }], "default": "p", "label": "Tag" },    
@@ -54,7 +54,7 @@
     { "type": "range", "id": "element_font_size_2", "min": 10, "max": 50, "step": 1, "unit": "px", "default": 14, "label": "Font Size"},
     { "type": "range", "id": "element_font_weight_2", "min": 100, "max": 900, "step": 100, "default": 500, "label": "Font Weight"},
     { "type": "select", "id": "element_data_2", "options": [{ "value": "title", "label": "Product Title" },{ "value": "vendor", "label": "Vendor" },{ "value": "text", "label": "Custom Text" }], "default": "text", "label": "Data Type" },
-    { "type": "text", "id": "element_text_2", "label": "Text", "default": "Title" },
+    { "type": "inline_richtext", "id": "element_text_2", "label": "Text", "default": "Title" },
 
     { "type": "header", "content": "Title 3"},
     { "type": "select", "id": "element_tag_3", "options": [{ "value": "h1", "label": "H1" },{ "value": "h2", "label": "H2" },{ "value": "h3", "label": "H3" },{ "value": "h4", "label": "H4" },{ "value": "p", "label": "Peragraph" }], "default": "p", "label": "Tag" },    
@@ -62,7 +62,7 @@
     { "type": "range", "id": "element_font_size_3", "min": 10, "max": 50, "step": 1, "unit": "px", "default": 14, "label": "Font Size"},
     { "type": "range", "id": "element_font_weight_3", "min": 100, "max": 900, "step": 100, "default": 500, "label": "Font Weight"},
     { "type": "select", "id": "element_data_3", "options": [{ "value": "title", "label": "Product Title" },{ "value": "vendor", "label": "Vendor" },{ "value": "text", "label": "Custom Text" }], "default": "text", "label": "Data Type" },
-    { "type": "text", "id": "element_text_3", "label": "Text", "default": "Title" }
+    { "type": "inline_richtext", "id": "element_text_3", "label": "Text", "default": "Title" }
     
   ]
 }
