@@ -4,7 +4,7 @@
     <div class="upsell-product upsell-single-product" style="background: {{ block.settings.element_background_color }};">
         {% if block.settings.element_show_product_img %}
         <div class="upsell-product-img">
-            {{ upsell_product.featured_image | image_url: width: 150 | image_tag: widths: '200, 300, 400', sizes: '(min-width:1600px) 960px, (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)', alt: 'upsell image' }}
+            {{ upsell_product.featured_image | image_url: width: 64 | image_tag: widths: '80, 90, 100', sizes: '(min-width:1600px) 960px, (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)', alt: 'upsell image' }}
         </div>
         {% endif %}
         <div class="upsell-product-info">
