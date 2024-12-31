@@ -1,0 +1,103 @@
+
+{% if block.settings.element_deal_box == 'deal2' %}
+  {% render 'countdowndeal_2',
+    block: block,
+    date_picker: block.settings.element_date_picker,
+    box_background: block.settings.element_background_color,
+    discount_heading: block.settings.element_discount_heading,   
+    discount_backcolor: block.settings.element_discount_background_color, 
+    discount_textcolor: block.settings.element_discount_text_color,
+    deal_heading: block.settings.element_deal_heading,
+    deal_backcolor: block.settings.element_deal_background_color, 
+    deal_textcolor: block.settings.element_deal_text_color,
+    dealsub_heading: block.settings.element_dealsub_heading,
+    dealsub_backcolor: block.settings.element_dealsub_background_color, 
+    dealsub_textcolor: block.settings.element_dealsub_text_color,
+    countdown_backcolor: block.settings.element_countdown_background_color,
+    countdown_textcolor: block.settings.element_countdown_text_color,
+    countdown_text: block.settings.element_countdown_text,
+    show_days: block.settings.show_days,
+    show_hours: block.settings.show_hours,
+    show_minutes: block.settings.show_minutes,
+    show_seconds: block.settings.show_seconds
+  %}
+
+{% elsif block.settings.element_deal_box == 'deal3' %}
+  {% render 'countdowndeal_3',
+    block: block,
+    date_picker: block.settings.element_date_picker,
+    box_background: block.settings.element_background_color,
+    discount_heading: block.settings.element_discount_heading,   
+    discount_backcolor: block.settings.element_discount_background_color, 
+    discount_textcolor: block.settings.element_discount_text_color,
+    deal_heading: block.settings.element_deal_heading,
+    deal_backcolor: block.settings.element_deal_background_color, 
+    deal_textcolor: block.settings.element_deal_text_color,
+    dealsub_heading: block.settings.element_dealsub_heading,
+    dealsub_backcolor: block.settings.element_dealsub_background_color, 
+    dealsub_textcolor: block.settings.element_dealsub_text_color,
+    countdown_backcolor: block.settings.element_countdown_background_color,
+    countdown_textcolor: block.settings.element_countdown_text_color,
+    countdown_text: block.settings.element_countdown_text,
+    show_days: block.settings.show_days,
+    show_hours: block.settings.show_hours,
+    show_minutes: block.settings.show_minutes,
+    show_seconds: block.settings.show_seconds
+  %}
+{% else %}
+  {% render 'countdowndeal_1',
+    block: block,
+    date_picker: block.settings.element_date_picker,
+    box_background: block.settings.element_background_color,
+    discount_heading: block.settings.element_discount_heading,   
+    discount_backcolor: block.settings.element_discount_background_color, 
+    discount_textcolor: block.settings.element_discount_text_color,
+    deal_heading: block.settings.element_deal_heading,
+    deal_backcolor: block.settings.element_deal_background_color, 
+    deal_textcolor: block.settings.element_deal_text_color,
+    dealsub_heading: block.settings.element_dealsub_heading,
+    dealsub_backcolor: block.settings.element_dealsub_background_color, 
+    dealsub_textcolor: block.settings.element_dealsub_text_color,
+    countdown_backcolor: block.settings.element_countdown_background_color,
+    countdown_textcolor: block.settings.element_countdown_text_color,
+    countdown_text: block.settings.element_countdown_text,
+    show_days: block.settings.show_days,
+    show_hours: block.settings.show_hours,
+    show_minutes: block.settings.show_minutes,
+    show_seconds: block.settings.show_seconds
+   %}
+{% endif %}
+<script src="{{ 'countdown.js' | asset_url }}" defer="defer" ></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+      // Start multiple countdowns with different target dates
+      startCountdown("{{ block.settings.element_date_picker }}", "{{ block.id | split: '_' | last | handle }}", {{block.settings.element_deal_box}}, {{block.settings.show_days}}, {{block.settings.show_hours}}, {{block.settings.show_minutes}}, {{block.settings.show_seconds}});
+    
+  });      
+</script> 
+{% schema %}
+{
+  "name": "Countdown Timer Element",
+  "target": "section",
+  "settings": [
+    { "type": "select", "id": "element_deal_box", "options": [{ "value": "deal1", "label": "Deal 1" },{ "value": "deal2", "label": "Deal 2" },{ "value": "deal3", "label": "Deal 3" }], "default": "deal1", "label": "Deal Countdown Styles" },
+    { "type": "text", "label": "Select a date", "id": "element_date_picker", "default": "January 1, 2025 00:00:00" },
+    { "type": "color", "id": "element_background_color", "label": "Box Background Color", "default": "#202020" },
+    { "type": "inline_richtext", "id": "element_discount_heading", "label": "Discount", "default": "-25%" },
+    { "type": "color", "id": "element_discount_background_color", "label": "Discount Background Color", "default": "#ADADAD" },    
+    { "type": "color", "id": "element_discount_text_color", "label": "Discount Text Color", "default": "#fff" },
+    { "type": "inline_richtext", "id": "element_deal_heading", "label": "Deal Heading", "default": "Launch" },    
+    { "type": "color", "id": "element_deal_text_color", "label": "Deal Text Color", "default": "#fff" },
+    { "type": "inline_richtext", "id": "element_dealsub_heading", "label": "Deal Subheading", "default": "Sale" },    
+    { "type": "color", "id": "element_dealsub_text_color", "label": "Deal Text Color", "default": "#fff" },
+
+    { "type": "color", "id": "element_countdown_background_color", "label": "Countdown Background Color", "default": "#ADADAD" },    
+    { "type": "color", "id": "element_countdown_text_color", "label": "Countdown Text Color", "default": "#fff" },
+    { "type": "textarea", "id": "element_countdown_text", "label": "Countdown static content", "default": "Days, Hours, Minutes", "info": "Please add content in comma separator." },
+    { "type": "checkbox", "id": "show_days", "label": "Show Days", "default": true },
+    { "type": "checkbox", "id": "show_hours", "label": "Show Hours", "default": true },
+    { "type": "checkbox", "id": "show_minutes", "label": "Show Minutes", "default": true },
+    { "type": "checkbox", "id": "show_seconds", "label": "Show Seconds", "default": false }    
+  ]
+}
+{% endschema %}

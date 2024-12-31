@@ -1,0 +1,93 @@
+{% comment %}
+  {% render 'countdowndeal_1',
+    block: block,
+    date_picker: block.settings.element_date_picker,
+    box_background: block.settings.element_background_color,
+    discount_heading: block.settings.element_discount_heading,
+    discount_backcolor: block.settings.element_discount_background_color,
+    discount_textcolor: block.settings.element_discount_text_color,
+    deal_heading: block.settings.element_deal_heading,
+    deal_textcolor: block.settings.element_deal_text_color,
+    dealsub_heading: block.settings.element_dealsub_heading,
+    dealsub_textcolor: block.settings.element_dealsub_text_color,
+    countdown_backcolor: block.settings.element_countdown_background_color,
+    countdown_textcolor: block.settings.element_countdown_text_color,
+    countdown_text: block.settings.element_countdown_text,
+    show_days: block.settings.show_days,
+    show_hours: block.settings.show_hours,
+    show_minutes: block.settings.show_minutes,
+    show_seconds: block.settings.show_seconds
+   %}
+{% endcomment %}
+<!-- Deal 3 -->
+{% assign texts = countdown_text | split: ',' %}
+<div class="launch-countdown" style="background: {{box_background}};">
+  <div class="dscount-title">
+    {% if discount_heading != blank %}
+      <div
+        class="discount"
+        style="background: {{discount_backcolor}}; font-size: 16px; font-weight: 700; color: {{discount_textcolor}};"
+      >
+        {{ discount_heading }}
+      </div>
+    {% endif %}
+    {% if deal_heading != blank or dealsub_heading != blank %}
+      <h2 style="font-size: 20px; font-weight: 700; color: {{deal_textcolor}};">
+        {% if deal_heading != blank %}
+          {{ deal_heading }}
+        {% endif %}
+        {% if dealsub_heading != blank %}
+          <span style="color: {{dealsub_textcolor}};">{{ dealsub_heading }}</span>
+        {% endif %}
+      </h2>
+    {% endif %}
+  </div>
+
+  <div
+    class="countdown countdown-type3"
+    id="countdown-{{ block.id | split: '_' | last | handle }}"
+    style="color: {{countdown_textcolor}}; background: {{countdown_backcolor}}; font-size: 20px; font-weight: 600;"
+  >
+    {{ texts[0] }}
+    {% if show_days %}
+      <div>
+        <div
+          id="days_{{ block.id | split: '_' | last | handle }}"
+          class="countdown-item"
+          style="font-weight: 700;"
+        ></div>
+        {{ texts[1] }}
+      </div>
+    {% endif %}
+    {% if show_hours %}
+      <div>
+        <div
+          id="hours_{{ block.id | split: '_' | last | handle }}"
+          class="countdown-item"
+          style="font-weight: 700;"
+        ></div>
+        {{ texts[2] }}
+      </div>
+    {% endif %}
+    {% if show_minutes %}
+      <div>
+        <div
+          id="minutes_{{ block.id | split: '_' | last | handle }}"
+          class="countdown-item"
+          style="font-weight: 700;"
+        ></div>
+        {{ texts[3] }}
+      </div>
+    {% endif %}
+    {% if show_seconds %}
+      <div>
+        <div
+          id="seconds_{{ block.id | split: '_' | last | handle }}"
+          class="countdown-item"
+          style="font-weight: 700;"
+        ></div>
+        {{ texts[4] }}
+      </div>
+    {% endif %}
+  </div>
+</div>
