@@ -1,0 +1,44 @@
+<div class="gallery {{block.settings.element_image_style}}">
+    {% if block.settings.element_heading !=blank %}
+        <p style="font-size: {{ block.settings.element_font_size }}px; font-weight: {{ block.settings.element_font_weight }}; color: {{ block.settings.element_text_color }};">{{ block.settings.element_heading }}</p>
+    {% endif %}
+    <ul>
+    {% if block.settings.gallery_image1 !=blank %}
+        <li>{{ block.settings.gallery_image1 | image_url: width: 300 | image_tag }}</li>  
+    {% endif %}
+    {% if block.settings.gallery_image2 !=blank %}
+        <li>{{ block.settings.gallery_image2 | image_url: width: 300 | image_tag }}</li>  
+    {% endif %}
+    {% if block.settings.gallery_image3 !=blank %}
+        <li>{{ block.settings.gallery_image3 | image_url: width: 300 | image_tag }}</li>  
+    {% endif %}
+    {% if block.settings.gallery_image4 !=blank %}
+        <li>{{ block.settings.gallery_image4 | image_url: width: 300 | image_tag }}</li>  
+    {% endif %}  
+    {% if block.settings.gallery_image5 !=blank %}
+        <li>{{ block.settings.gallery_image5 | image_url: width: 300 | image_tag }}</li>  
+    {% endif %}
+    {% if block.settings.gallery_image6 !=blank %}
+        <li>{{ block.settings.gallery_image6 | image_url: width: 300 | image_tag }}</li>  
+    {% endif %}         
+    </ul>
+</div>
+{% schema %}
+  {
+    "name": "Gallery Element",
+    "target": "section",
+    "settings": [
+      { "type": "select", "id": "element_image_style", "options": [{ "value": "square-image", "label": "Square" },{ "value": "portrait-image", "label": "Portrait" },{ "value": "landscape-image", "label": "Landscape" }], "default": "square-image", "label": "Gallery Styles" },
+      { "type": "inline_richtext", "id": "element_heading", "label": "Heading", "default": "KUNDENSTORIES" },    
+      { "type": "color", "id": "element_text_color", "label": "Text Color", "default": "#fff" },
+      { "type": "range", "id": "element_font_size", "min": 10, "max": 20, "step": 1, "unit": "px", "default": 14, "label": "Font Size"},
+      { "type": "range", "id": "element_font_weight", "min": 100, "max": 800, "step": 100, "default": 500 , "label": "Font Weight"},
+      { "type": "image_picker", "id": "gallery_image1", "label": "Image"},    
+      { "type": "image_picker", "id": "gallery_image2", "label": "Image"},    
+      { "type": "image_picker", "id": "gallery_image3", "label": "Image"},
+      { "type": "image_picker", "id": "gallery_image4", "label": "Image"},    
+      { "type": "image_picker", "id": "gallery_image5", "label": "Image"},    
+      { "type": "image_picker", "id": "gallery_image6", "label": "Image"}        
+    ]
+  }
+{% endschema %}

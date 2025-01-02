@@ -1,0 +1,55 @@
+<div class="comparison-table {{ block.settings.element_table_style }}" style="background: {{ block.settings.background_color }};">
+    {% if block.settings.element_heading !=blank %}
+        <h3 style="font-size: {{ block.settings.element_font_size }}px; font-weight: {{ block.settings.element_font_weight }}; color: {{ block.settings.element_text_color }};">{{ block.settings.element_heading }}</h3>
+    {% endif %}
+    <div class="comparison-table-head">  
+      <div class="comparison-table-row">
+        <div class="comparison-table-cell">&nbsp;</div>
+        <div class="comparison-table-cell"><img src="https://cdn.shopify.com/s/files/1/0675/4130/3451/files/shirt-icon1.png?v=1734959328" alt="" /></div>
+        <div class="comparison-table-cell"><img src="https://cdn.shopify.com/s/files/1/0675/4130/3451/files/shirt-icon2.svg?v=1734953292" alt="" /></div>
+      </div> 
+      </div>
+    <div class="comparison-table-body">
+      <div class="comparison-table-row" style="background: #fff;">
+        <div class="comparison-table-cell" style="font-size: 12px; line-height: normal; font-weight: 600; color: #000;">100% Cotton</div>
+        <div class="comparison-table-cell" style="background: #7E9F97;"><img src="https://cdn.shopify.com/s/files/1/0675/4130/3451/files/check-round.svg?v=1734953195" alt=""/> </div>
+        <div class="comparison-table-cell"><img src="https://cdn.shopify.com/s/files/1/0675/4130/3451/files/cross-round.svg?v=1734953195" alt=""/> </div>
+      </div>
+      <div class="comparison-table-row">
+        <div class="comparison-table-cell" style="font-size: 12px; line-height: normal; font-weight: 600; color: #000;">100% Cotton</div>
+        <div class="comparison-table-cell" style="background: #7E9F97;"><img src="https://cdn.shopify.com/s/files/1/0675/4130/3451/files/check-round.svg?v=1734953195" alt=""/> </div>
+        <div class="comparison-table-cell"><img src="https://cdn.shopify.com/s/files/1/0675/4130/3451/files/cross-round.svg?v=1734953195" alt=""/> </div>
+      </div>
+      <div class="comparison-table-row" style="background: #fff;">
+        <div class="comparison-table-cell" style="font-size: 12px; line-height: normal; font-weight: 600; color: #000;">100% Cotton</div>
+        <div class="comparison-table-cell" style="background: #7E9F97;"><img src="https://cdn.shopify.com/s/files/1/0675/4130/3451/files/check-round.svg?v=1734953195" alt=""/> </div>
+        <div class="comparison-table-cell"><img src="https://cdn.shopify.com/s/files/1/0675/4130/3451/files/cross-round.svg?v=1734953195" alt=""/> </div>
+      </div>
+      <div class="comparison-table-row">
+        <div class="comparison-table-cell" style="font-size: 12px; line-height: normal; font-weight: 600; color: #000;">100% Cotton</div>
+        <div class="comparison-table-cell" style="background: #7E9F97;"><img src="https://cdn.shopify.com/s/files/1/0675/4130/3451/files/check-round.svg?v=1734953195" alt=""/> </div>
+        <div class="comparison-table-cell"><img src="https://cdn.shopify.com/s/files/1/0675/4130/3451/files/cross-round.svg?v=1734953195" alt=""/> </div>
+      </div>
+      
+    </div>
+</div>  
+{% schema %}
+  {
+    "name": "Comparison Table Element",
+    "target": "section",
+    "settings": [
+      { "type": "select", "id": "element_table_style", "options": [{ "value": "comparison-table-type1", "label": "Type 1" },{ "value": "comparison-table-type2", "label": "Type 2" },{ "value": "comparison-table-type3", "label": "Type 3" }], "default": "comparison-table-type1", "label": "Table Styles" },
+      { "type": "color", "id": "background_color", "label": "Background Color", "default": "#F2F5FF" },
+      { "type": "inline_richtext", "id": "element_heading", "label": "Heading", "default": "Unser Produkt im Vergleich zu anderen Marken" },    
+      { "type": "color", "id": "element_text_color", "label": "Text Color", "default": "#000" },
+      { "type": "range", "id": "element_font_size", "min": 10, "max": 50, "step": 1, "unit": "px", "default": 20, "label": "Font Size"},
+      { "type": "range", "id": "element_font_weight", "min": 100, "max": 800, "step": 100, "default": 600 , "label": "Font Weight"},
+      { "type": "color", "id": "table_row_color", "label": "Table Row Background Color", "default": "#fff", "info": "It does not affect all rows, it only affects the odd rows." },
+      { "type": "color", "id": "table_cell_color", "label": "Table Cell Background Color", "default": "#7E9F97", "info": "It does not affect all cell, it only affects the even cell." },
+      { "type": "header", "content": "Table Head"},
+      { "type": "textarea", "id": "table_header_texts", "label": "Table header texts", "default": "&nbsp;| Image file url| Text", "info": "Please add content in pipe separator." },
+      { "type": "header", "content": "Table Body"},
+      { "type": "textarea", "id": "table_body_texts", "label": "Table Body texts", "default": "100% Cotton, true, false| 100% Cotton, true, false| 100% Cotton, true, false", "info": "cell item separator by comma and cell separator by pipe." }
+    ]
+  }
+{% endschema %}
