@@ -1,38 +1,93 @@
-<div class="comparison-table {{ block.settings.element_table_style }}" style="background: {{ block.settings.background_color }};">
-    {% if block.settings.element_heading !=blank %}
-        <h3 style="font-size: {{ block.settings.element_font_size }}px; font-weight: {{ block.settings.element_font_weight }}; color: {{ block.settings.element_text_color }};">{{ block.settings.element_heading }}</h3>
+{% assign row_color = block.settings.table_row_color %}
+  {% assign cell_color = block.settings.table_cell_color %}
+  <div
+    class="comparison-table {{ block.settings.element_table_style }}"
+    style="background: {{ block.settings.background_color }};"
+  >
+    {% if block.settings.element_heading != blank %}
+      <h3 style="font-size: {{ block.settings.element_font_size }}px; font-weight: {{ block.settings.element_font_weight }}; color: {{ block.settings.element_text_color }};">
+        {{ block.settings.element_heading }}
+      </h3>
     {% endif %}
-    <div class="comparison-table-head">  
+
+    <div class="comparison-table-head">
       <div class="comparison-table-row">
-        <div class="comparison-table-cell">&nbsp;</div>
-        <div class="comparison-table-cell"><img src="https://cdn.shopify.com/s/files/1/0675/4130/3451/files/shirt-icon1.png?v=1734959328" alt="" /></div>
-        <div class="comparison-table-cell"><img src="https://cdn.shopify.com/s/files/1/0675/4130/3451/files/shirt-icon2.svg?v=1734953292" alt="" /></div>
-      </div> 
+        <div class="comparison-table-cell">
+          {% if block.settings.table_head_text == blank -%}
+            &nbsp;
+          {%- else -%}
+            {{- block.settings.table_head_text -}}
+          {%- endif %}
+        </div>
+        {% if block.settings.table_head_img1 != blank %}
+          <div
+            class="comparison-table-cell"
+            {% if block.settings.element_table_style != 'comparison-table-type1' %}
+              style="background: {{ cell_color }};"
+            {% endif %}
+          >
+            {{ block.settings.table_head_img1 | image_url: width: 34, height: 34 | image_tag }}
+          </div>
+        {% endif %}
+        {% if block.settings.table_head_img2 != blank %}
+          <div class="comparison-table-cell">
+            {{ block.settings.table_head_img2 | image_url: width: 34, height: 34 | image_tag }}
+          </div>
+        {% endif %}
+        {% if block.settings.table_head_img3 != blank %}
+          <div
+            class="comparison-table-cell"
+            {% if block.settings.element_table_style != 'comparison-table-type1' %}
+              style="background: {{ cell_color }};"
+            {% endif %}
+          >
+            {{ block.settings.table_head_img3 | image_url: width: 34, height: 34 | image_tag }}
+          </div>
+        {% endif %}
       </div>
-    <div class="comparison-table-body">
-      <div class="comparison-table-row" style="background: #fff;">
-        <div class="comparison-table-cell" style="font-size: 12px; line-height: normal; font-weight: 600; color: #000;">100% Cotton</div>
-        <div class="comparison-table-cell" style="background: #7E9F97;"><img src="https://cdn.shopify.com/s/files/1/0675/4130/3451/files/check-round.svg?v=1734953195" alt=""/> </div>
-        <div class="comparison-table-cell"><img src="https://cdn.shopify.com/s/files/1/0675/4130/3451/files/cross-round.svg?v=1734953195" alt=""/> </div>
-      </div>
-      <div class="comparison-table-row">
-        <div class="comparison-table-cell" style="font-size: 12px; line-height: normal; font-weight: 600; color: #000;">100% Cotton</div>
-        <div class="comparison-table-cell" style="background: #7E9F97;"><img src="https://cdn.shopify.com/s/files/1/0675/4130/3451/files/check-round.svg?v=1734953195" alt=""/> </div>
-        <div class="comparison-table-cell"><img src="https://cdn.shopify.com/s/files/1/0675/4130/3451/files/cross-round.svg?v=1734953195" alt=""/> </div>
-      </div>
-      <div class="comparison-table-row" style="background: #fff;">
-        <div class="comparison-table-cell" style="font-size: 12px; line-height: normal; font-weight: 600; color: #000;">100% Cotton</div>
-        <div class="comparison-table-cell" style="background: #7E9F97;"><img src="https://cdn.shopify.com/s/files/1/0675/4130/3451/files/check-round.svg?v=1734953195" alt=""/> </div>
-        <div class="comparison-table-cell"><img src="https://cdn.shopify.com/s/files/1/0675/4130/3451/files/cross-round.svg?v=1734953195" alt=""/> </div>
-      </div>
-      <div class="comparison-table-row">
-        <div class="comparison-table-cell" style="font-size: 12px; line-height: normal; font-weight: 600; color: #000;">100% Cotton</div>
-        <div class="comparison-table-cell" style="background: #7E9F97;"><img src="https://cdn.shopify.com/s/files/1/0675/4130/3451/files/check-round.svg?v=1734953195" alt=""/> </div>
-        <div class="comparison-table-cell"><img src="https://cdn.shopify.com/s/files/1/0675/4130/3451/files/cross-round.svg?v=1734953195" alt=""/> </div>
-      </div>
-      
     </div>
-</div>  
+
+    <div class="comparison-table-body">
+      {% assign body = block.settings.table_body_texts | split: '|' %}
+      {% for contents in body %}
+        {% assign is_odd = forloop.index | modulo: 2 %}
+        <div
+          class="comparison-table-row"
+          {% if is_odd != 0 %}
+            style="background: {{row_color}};"
+          {% endif %}
+        >
+          {% assign data = contents | split: ',' %}
+          {% for item in data %}
+            {% assign is_odd_cell = forloop.index | modulo: 2 %}
+            {% assign item_value = item | strip %}
+            {% if item_value contains 'true' %}
+              <div
+                class="comparison-table-cell"
+                style="{% if is_odd_cell == 0 %} background: {{cell_color}}; {% endif %}"
+              >
+                <img src="{{ 'check-round.svg' | asset_url }}" width="27" height="27">
+              </div>
+            {% elsif item_value contains 'false' %}
+              <div
+                class="comparison-table-cell"
+                style="{% if is_odd_cell == 0 %} background: {{cell_color}}; {% endif %}"
+              >
+                <img src="{{ 'cross-round.svg' | asset_url }}" width="27" height="27">
+              </div>
+            {% else %}
+              <div
+                class="comparison-table-cell"
+                style="font-size: 12px; line-height: normal; font-weight: 600; color: #000; {% if is_odd_cell == 0 %} background: {{cell_color}}; {% endif %}"
+              >
+                {{ item_value }}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
 {% schema %}
   {
     "name": "Comparison Table Element",
@@ -47,7 +102,10 @@
       { "type": "color", "id": "table_row_color", "label": "Table Row Background Color", "default": "#fff", "info": "It does not affect all rows, it only affects the odd rows." },
       { "type": "color", "id": "table_cell_color", "label": "Table Cell Background Color", "default": "#7E9F97", "info": "It does not affect all cell, it only affects the even cell." },
       { "type": "header", "content": "Table Head"},
-      { "type": "textarea", "id": "table_header_texts", "label": "Table header texts", "default": "&nbsp;| Image file url| Text", "info": "Please add content in pipe separator." },
+      { "type": "textarea", "id": "table_head_text", "label": "Table head text" },
+      { "type": "image_picker", "id": "table_head_img1", "label": "Table head cell image" },
+      { "type": "image_picker", "id": "table_head_img2", "label": "Table head cell image" },
+      { "type": "image_picker", "id": "table_head_img3", "label": "Table head cell image" },
       { "type": "header", "content": "Table Body"},
       { "type": "textarea", "id": "table_body_texts", "label": "Table Body texts", "default": "100% Cotton, true, false| 100% Cotton, true, false| 100% Cotton, true, false", "info": "cell item separator by comma and cell separator by pipe." }
     ]
