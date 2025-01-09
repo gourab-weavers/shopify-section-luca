@@ -1,4 +1,4 @@
-{{ 'usp_elements.css' | asset_url| stylesheet_tag }}
+{{ 'producttitle_element.css' | asset_url| stylesheet_tag }}
 <div class="product-title">
     {% if block.settings.element_text_1 != blank or block.settings.element_data_1 == 'title' or block.settings.element_data_1 == 'vendor' %}
         <{{ block.settings.element_tag_1 }} style="font-size:{{ block.settings.element_font_size_1 }}px; font-weight: {{ block.settings.element_font_weight_1 }}; color: {{ block.settings.text_color_1 }};">

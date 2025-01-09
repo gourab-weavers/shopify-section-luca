@@ -16,45 +16,60 @@
         element_tick_position: section.settings.element_tick_position
     %} 
 {% endcomment %}
-<div class="trustelement {{ element_corner }} {{ element_tick_position }}{%if element_verified %} check {% endif %}" style="background: {{backcolor}};">
-    {% if show_element_image %}
+<div class="trustelement {{ element_corner }} {% if element_verified %} {{ element_tick_position }} check {% endif %}" style="background: {{backcolor}};">
+    {% if show_element_image and element_tick_position != 'without-user-image' %}
         <div class="trustelement-img">
-        {% if element_first_image != blank or element_secound_image != blank and show_element_image and element_tick_position != 'without-user-image'%}
+        {% if element_first_image != blank or element_secound_image != blank %}
             {% if element_first_image != blank %}
-                <img src="{{ element_first_image | img_url:"25*25" }}" alt="Trust Element Image" width="25" height="25"/>
+                {{ element_first_image | image_url: width: 25, height: 25 | image_tag }}
             {% endif %}
             {% if element_secound_image != blank %}
-                <img src="{{ element_secound_image | img_url:"25*25" }}" alt="Trust Element Image" width="25" height="25"/>
+                {{ element_secound_image | image_url: width: 25, height: 25 | image_tag }}
             {% endif %}
-            {%if element_verified and element_verified_image != blank %} 
+            {% if element_verified %} 
                 {% if element_tick_position contains 'verify-check-top-right' %}
-                <img src="{{ element_verified_image | img_url:"14*14" }}" alt="Trust Element Image" width="14" height="14"/>
+                    {% if element_verified_image != blank %}
+                        {{ element_verified_image | image_url: width: 14, height: 14 | image_tag }}
+                    {% else %}
+                        <img src="{{ verify-tick.png | asset_url }}" alt="Trust Element Image" width="14" height="14"/>
+                    {% endif %}
                 {% endif %}
             {% endif %}
         {% else %}                        
             {% if show_element_image and element_tick_position != 'verify-check-without-image'%}
                 <img src="{{ 'trustelementimg1.jpg' | asset_url }}" alt="Trust Element Image" width="25" height="25"/>
-                <img src="{{ 'trustelementimg2.jpg' | asset_url }}" alt="Trust Element Image" width="25" height="25" />  
+                <img src="{{ 'trustelementimg2.jpg' | asset_url }}" alt="Trust Element Image" width="25" height="25" />
             {% endif %}
+            {% if element_verified and element_tick_position != 'verify-check-with-content' %} 
+                {% if element_verified_image != blank %}
+                    {{ element_verified_image | image_url: width: 14, height: 14 | image_tag }}
+                {% else %}
+                    <img src="{{ 'verify-tick.png' | asset_url }}" alt="Trust Element Image" width="14" height="14"/>
+                {% endif %}
+            {% endif %} 
         {% endif %}  
         </div>
     {% else %}
-        {% unless show_element_image %}
-            {%if element_verified and element_verified_image != blank %} 
-                {% if element_tick_position contains 'verify-check-without-image' %}
-                    <div class="trustelement-img">
-                        <img src="{{ element_verified_image | img_url:"14*14" }}" alt="Trust Element Image" width="14" height="14"/>
-                    </div>
+        {%if element_verified and element_tick_position contains 'verify-check-without-image' and element_tick_position != 'verify-check-with-content' %} 
+            <div class="trustelement-img">
+                {% if element_verified_image != blank %}
+                    {{ element_verified_image | image_url: width: 14, height: 14 | image_tag }}
+                {% else %}
+                    <img src="{{ 'verify-tick.png' | asset_url }}" alt="Trust Element Image" width="14" height="14"/>
                 {% endif %}
-            {% endif %}
-        {% endunless %}
-    {% endif %} 
+            </div>
+        {% endif %}
+    {% endif %}
     <div class="info">
         <div style="color:{{text_color}};">
             <p style="margin: 0; font-size:{{ font_size }}px; font-weight:{{ font_weight }}">
             {{ element_text }} 
-            {% if element_tick_position contains 'verify-check-with-content' and element_verified and element_verified_image != blank%}
-                <img src="{{ element_verified_image | img_url:"14*14" }}" alt="Trust Element Image" width="14" height="14"/>
+            {% if element_tick_position contains 'verify-check-with-content' and element_verified %}
+                {% if element_verified_image != blank %}
+                    {{ element_verified_image | image_url: width: 14, height: 14 | image_tag }}
+                {% else %}
+                    <img src="{{ 'verify-tick.png' | asset_url }}" alt="Trust Element Image" width="14" height="14"/>
+                {% endif %}
             {% endif %}
             {{ element_text2 }}
             </p>

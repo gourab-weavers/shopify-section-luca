@@ -1,4 +1,4 @@
-{{ 'usp_elements.css' | asset_url| stylesheet_tag }}
+{{ 'upsellSingle_element.css' | asset_url| stylesheet_tag }}
 {% if block.settings.upsell_product %}
     {% assign upsell_product = block.settings.upsell_product %}
     <div class="upsell-product upsell-single-product" style="background: {{ block.settings.element_background_color }};">
@@ -12,10 +12,10 @@
                 <h5 style="font-size: 10px; font-weight:500 ; color: #000000;">{{ upsell_product.vendor }}</h5>
             {% endif %}
             {% if block.settings.element_show_title %}
-                <h3 style="font-size: 10px; font-weight:500 ; color: #000000;">{{ upsell_product.title }}</h3>
+                <h3 style="font-size: 14px; font-weight:500 ; color: #000000;">{{ upsell_product.title }}</h3>
             {% endif %}
             {% if block.settings.element_show_short_description and block.settings.element_short_description != blank %}
-                <p style="font-size: 7px; font-weight: 500; color: #000000;">{{ block.settings.element_short_description }}</p>
+                <p style="font-size: 10px; font-weight: 500; color: #000000;">{{ block.settings.element_short_description }}</p>
             {% endif %}
             {% if block.settings.element_show_price %}
                 <div class="upsell-product-price">
@@ -23,7 +23,7 @@
                 </div>
             {% endif %}
             {% if block.settings.element_show_button %}
-                <a href="{{ shop.url }}/cart/{{ upsell_product.selected_or_first_available_variant.id }}:1" target="blank" class="buy-btn" style="background: #000000; font-size: 6px; color: #fff; font-weight: 500;">Jetzt kaufen</a>
+                <a href="{{ shop.url }}/cart/{{ upsell_product.selected_or_first_available_variant.id }}:1" target="blank" class="buy-btn" style="background: #000000; font-size: 12px; color: #fff; font-weight: 500;">Jetzt kaufen</a>
             {% endif %}
             
         </div>

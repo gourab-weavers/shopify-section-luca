@@ -1,4 +1,4 @@
-{{ 'benifit_elements.css' | asset_url| stylesheet_tag }}
+{{ 'benifit_element.css' | asset_url| stylesheet_tag }}
 {% assign for_free = false %}
 {% if block.settings.element_text_badge_1 !="" or block.settings.element_text_badge_2 !="" or block.settings.element_text_badge_3 !=""%}
     {% assign for_free = true %}
@@ -12,7 +12,7 @@
       <li>
             {% if block.settings.element_before_image_1 != blank %}
                 <span>
-                    <img src="{{ block.settings.element_before_image_1 | img_url: "master" }}" alt="Benifit Icon" />
+                    {{ block.settings.element_before_image_1 | image_url: width: 20, height: 20 | image_tag }}
                 </span>
             {% endif %}
             <span style="color:{{ block.settings.text_color_1 }}; font-size:{{ block.settings.element_font_size_1 }}px">{{ block.settings.element_text_1 }}</span> 
@@ -25,7 +25,7 @@
         <li>
               {% if block.settings.element_before_image_2 != blank %}
                   <span>
-                      <img src="{{ block.settings.element_before_image_2 | img_url: "master" }}" alt="Benifit Icon" />
+                      {{ block.settings.element_before_image_2 | image_url: width: 20, height: 20 | image_tag }}
                   </span>
               {% endif %}
               <span style="color:{{ block.settings.text_color_2 }}; font-size:{{ block.settings.element_font_size_2 }}px">{{ block.settings.element_text_2 }}</span> 
@@ -38,7 +38,7 @@
         <li>
               {% if block.settings.element_before_image_3 != blank %}
                   <span>
-                      <img src="{{ block.settings.element_before_image_3 | img_url: "master" }}" alt="Benifit Icon" />
+                      {{ block.settings.element_before_image_3 | image_url: width: 20, height: 20 | image_tag }}
                   </span>
               {% endif %}
               <span style="color:{{ block.settings.text_color_3 }}; font-size:{{ block.settings.element_font_size_3 }}px">{{ block.settings.element_text_3 }}</span> 

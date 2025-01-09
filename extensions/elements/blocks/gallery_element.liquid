@@ -1,3 +1,4 @@
+{{ 'gallery_element.css' | asset_url| stylesheet_tag }}
 <div class="gallery {{block.settings.element_image_style}}">
     {% if block.settings.element_heading !=blank %}
         <p style="font-size: {{ block.settings.element_font_size }}px; font-weight: {{ block.settings.element_font_weight }}; color: {{ block.settings.element_text_color }};">{{ block.settings.element_heading }}</p>

@@ -1,4 +1,4 @@
-{{ 'usp_elements.css' | asset_url| stylesheet_tag }}
+{{ 'deliveryInfo_element.css' | asset_url| stylesheet_tag }}
 <div class="delivery-info {% if block.settings.enable_background_color %} in-stock{% endif %}" {% if block.settings.enable_background_color %}style="background:{{ block.settings.background_color }};"{% endif %}>
     {% if block.settings.element_before_image != blank %}
         {{ block.settings.element_before_image | image_url: width: 20, height: 20 | image_tag: widths: '40, 50, 60', sizes: '(min-width:1600px) 960px, (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)', alt: 'Delivery' }}
